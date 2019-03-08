@@ -123,8 +123,9 @@ app.get('/doCPUProfiling/profileId/:profileId/durationInSec/:durationInSec', fun
 });
 
 var stopProfiling = function(profileId) {
+    console.log('Profiler data to be written');
     let profile = profiler.stopProfiling(profileId);
-    fs.writeFile(__dirname + '/' + profileId + '.cpuprofile', JSON.stringify(profile), function () {
+    fs.writeFile( '/opt/app-root/src/' + profileId + '.cpuprofile', JSON.stringify(profile), function () {
         console.log('Profiler data written');
     });
 }
