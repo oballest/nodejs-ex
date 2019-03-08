@@ -3,6 +3,7 @@ var express = require('express'),
     app     = express(),
     morgan  = require('morgan');
 const profiler = require('v8-profiler');
+const fs = require('fs');
     
 Object.assign=require('object-assign')
 
