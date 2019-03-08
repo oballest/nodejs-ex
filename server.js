@@ -110,6 +110,25 @@ app.get('/pagecount', function (req, res) {
   }
 });
 
+
+app.get('/doCPUProfiling/profileId/:profileId/durationInSec/:durationInSec', function (req, res) {
+    let profileId = req.params['profileId'];
+    let durationInMilliSec = req.params['durationInSec'] * 1000;
+    // Start profiling
+    profiler.startProfiling(profileId);
+    setTimeout(function () {
+        stopProfiling(profileId);
+    }, durationInMilliSec);
+    res.json({});
+});
+
+var stopProfiling = function(profileId) {
+    let profile = profiler.stopProfiling(profileId);
+    fs.writeFile(__dirname + '/' + profileId + '.cpuprofile', JSON.stringify(profile), function () {
+        console.log('Profiler data written');
+    });
+}
+
 // error handling
 app.use(function(err, req, res, next){
   console.error(err.stack);
