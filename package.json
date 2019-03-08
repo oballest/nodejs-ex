@@ -12,6 +12,7 @@
     "mongodb": "^2.1.16",
     "morgan": "^1.7.0",
     "object-assign":"4.1.0"
+    "v8-profiler":"5.7.0"
   },
   "engine": {
     "node": "*",
